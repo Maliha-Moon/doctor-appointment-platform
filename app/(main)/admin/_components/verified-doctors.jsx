@@ -17,9 +17,9 @@ import useFetch from "@/hook/use-fetch";
 import { toast } from "sonner";
 
 export function VerifiedDoctors({ doctors }) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [targetDoctor, setTargetDoctor] = useState(null);
-  const [actionType, setActionType] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(""); //stores the current text input for searching doctors.
+  const [targetDoctor, setTargetDoctor] = useState(null); // stores the doctor currently being suspended or reinstated.
+  const [actionType, setActionType] = useState(null); // stores the type of action: "SUSPEND" or "REINSTATE"
 
   const {
     loading,
@@ -36,6 +36,7 @@ export function VerifiedDoctors({ doctors }) {
     );
   });
 
+  // handle & update doctor status
   const handleStatusChange = async (doctor, suspend) => {
     const confirmed = window.confirm(
       `Are you sure you want to ${suspend ? "suspend" : "reinstate"} ${
